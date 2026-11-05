@@ -45,7 +45,7 @@ header p{color:var(--ink2);font-size:13px;margin-top:3px;}
 .coins{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
 .coins i{position:absolute;top:-24px;font-style:normal;font-size:18px;opacity:0;animation:fall 2.4s ease-in forwards;}
 @keyframes fall{0%{opacity:0;transform:translateY(0) rotate(0);}15%{opacity:.9;}100%{opacity:0;transform:translateY(260px) rotate(300deg);}}
-.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px;}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:8px;margin-top:16px;}
 .kpi{background:rgba(5,7,12,.35);border:1px solid var(--line);border-radius:14px;padding:10px 6px;min-width:0;}
 .kpi b{display:block;font-family:var(--disp);font-weight:800;font-size:20px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .kpi span{display:block;font-size:10.5px;color:var(--ink3);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-top:3px;}
@@ -110,7 +110,7 @@ footer{text-align:center;color:var(--ink3);font-size:12px;margin-top:18px;line-h
   <div id="app"><div class="skel"></div><div class="skel"></div></div>
   <footer>Nur für die Mannschaft. Bitte nicht außerhalb der Gruppe teilen.<br>Zählt nur, was der Kassenwart bestätigt hat.</footer>
 </div>
-<script>window.MK_CFG={"url": "https://lvaukuzgcwgqipxwzabo.supabase.co", "anon": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx2YXVrdXpnY3dncWlweHd6YWJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNTYwMTcsImV4cCI6MjEwNTczMjAxN30.jYZF8q8-SyCaWykM0wwcK58EzfTbO2VASKz1NIv1xbo", "build": "beta-0.84", "kabine": "https://svbsc.albertklee.de/"};</script>
+<script>window.MK_CFG={"url": "https://lvaukuzgcwgqipxwzabo.supabase.co", "anon": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx2YXVrdXpnY3dncWlweHd6YWJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAxNTYwMTcsImV4cCI6MjEwNTczMjAxN30.jYZF8q8-SyCaWykM0wwcK58EzfTbO2VASKz1NIv1xbo", "build": "beta-0.86", "kabine": "https://svbsc.albertklee.de/"};</script>
 <script>
 (function(){
   'use strict';
@@ -157,7 +157,8 @@ footer{text-align:center;color:var(--ink3);font-size:12px;margin-top:18px;line-h
         <small>Bank, PayPal &amp; bar zusammen${D.kassenwart?' · Kassenwart: '+esc(D.kassenwart):''}${D.stand_at?' · Stand '+dt(D.stand_at):''}</small>
         <div class="kpis"><div class="kpi"><b class="${+D.offen?'mid':'ok'}">${eurK(D.offen)}</b><span>noch offen</span></div>
           <div class="kpi"><b>${eurK(D.gemeldet)}</b><span>wartet auf OK</span></div>
-          <div class="kpi"><b class="ok">${eurK(s.eingezahlt)}</b><span>eingezahlt ${esc(sl.replace('Saison ',''))}</span></div></div></div>
+          <div class="kpi"><b class="ok">${eurK(s.eingezahlt)}</b><span>eingezahlt ${esc(sl.replace('Saison ',''))}</span></div>
+          ${+D.kaesten_offen||+D.kaesten_saison?`<div class="kpi"><b class="${+D.kaesten_offen?'mid':'ok'}">${(+D.kaesten_offen||0).toLocaleString('de-DE')}</b><span>${+D.kaesten_offen===1?'Kasten':'Kästen'} offen${+D.kaesten_saison?' · '+(+D.kaesten_saison).toLocaleString('de-DE')+' mitgebracht':''}</span></div>`:''}</div></div>
 
       <div class="card"><span class="pill">🏆 Rangliste</span><h2 style="margin-top:10px">Top-Supporter</h2>
         <p class="sub">Die treuesten Kassenfüller. Ohne euch keine Mannschaftsfahrt, danke für euren Einsatz 😄</p>
